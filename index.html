@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramalhete | Bouquets made your way</title>
+<meta name="description" content="Build your own bouquet, watch it bloom and send the order on WhatsApp. Concept project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7ee;--paper:#fff;--ink:#1c2a1f;--muted:#4a5a4e;--leaf:#1f5a33;--poppy:#e8402a;--sun:#ffc83d;--stage:#dfe9d2;--line:#cfdac3;--serif:"DM Serif Display",Georgia,serif;--sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--sans);overflow-wrap:break-word}
+a{color:inherit}.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+:focus-visible{outline:3px solid var(--leaf);outline-offset:3px;border-radius:6px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 0;flex-wrap:wrap}
+.logo{font:400 1.7rem var(--serif);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.logo i{width:14px;height:14px;border-radius:50%;background:var(--poppy);box-shadow:-9px 5px 0 -2px var(--sun),9px 5px 0 -2px #ff9bb3}
+nav{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap}nav a{font-weight:600;text-decoration:none}nav a:hover{text-decoration:underline;text-underline-offset:5px}
+.badge{font-size:.95rem;font-weight:600;padding:.3rem .9rem;border-radius:999px;background:var(--paper);border:2px solid var(--line)}
+.badge b{display:inline-block;width:.6rem;height:.6rem;border-radius:50%;background:#9aa79d;margin-right:.45rem}.badge.on b{background:#2fa04f}
+.hero{padding:3rem 0 2.5rem}
+h1{font:400 clamp(2.6rem,7vw,5.2rem)/1 var(--serif);margin:0 0 1.1rem;max-width:12ch}h1 em{font-style:normal;color:var(--poppy)}
+h2{font:400 clamp(2rem,4vw,2.8rem)/1.1 var(--serif);margin:0 0 .6rem}
+.hero p,.lead{font-size:1.2rem;color:var(--muted);max-width:52ch;margin:0 0 1.6rem}
+.go{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;background:var(--leaf);color:#fff;font:700 1.05rem var(--sans);text-decoration:none;border:0;cursor:pointer}.go:hover{background:var(--ink)}
+section{padding:3.5rem 0}
+.presets{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.pc{background:var(--paper);border:2px solid var(--line);border-radius:24px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem}
+.pc h3{font:400 1.5rem var(--serif);margin:0}.pc p{margin:0;color:var(--muted)}.pc .meta{font-weight:600;font-size:.95rem}
+.pc button{margin-top:auto;padding:.7rem 1rem;border-radius:999px;border:2px solid var(--leaf);background:transparent;color:var(--leaf);font:700 1rem var(--sans);cursor:pointer}.pc button:hover{background:var(--leaf);color:#fff}
+.dots{display:flex;gap:4px;margin-bottom:.4rem}.dots i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(28,42,31,.3)}
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.stage{position:sticky;top:1rem;background:var(--stage);border-radius:32px;padding:1.5rem 1.5rem 1.2rem;text-align:center}
+.stage svg{width:100%;max-width:400px;height:auto;display:block;margin:0 auto}
+.cap{margin:.4rem 0 0;font:400 1.4rem var(--serif)}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+fieldset{border:0;margin:0 0 1.7rem;padding:0;min-width:0}legend{font:400 1.5rem var(--serif);margin-bottom:.7rem;padding:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:.7rem}
+.opt{position:relative;display:block}.opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.opt>span{display:block;padding:.8rem 1rem;border:2px solid var(--line);border-radius:16px;background:var(--paper);font-weight:600;height:100%}
+.opt small{display:block;font-weight:400;color:var(--muted);font-size:.92rem}
+.opt input:checked+span{border-color:var(--leaf);background:#e9f3e3;box-shadow:0 0 0 2px var(--leaf)}
+.opt input:focus-visible+span{outline:3px solid var(--leaf);outline-offset:3px}
+label.f{display:block;font-weight:600;margin-bottom:1rem}
+input[type=text],input[type=date],select,textarea{display:block;width:100%;margin-top:.3rem;padding:.7rem .9rem;border:2px solid var(--line);border-radius:12px;background:var(--paper);font:inherit;color:var(--ink)}
+textarea{min-height:84px;resize:vertical}
+.chk{display:flex;gap:.6rem;align-items:center;font-weight:500;margin-bottom:.6rem}.chk input{width:1.2rem;height:1.2rem;accent-color:var(--leaf)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sum{background:var(--ink);color:#fff;border-radius:24px;padding:1.4rem 1.6rem}
+.sum .t{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1rem}.sum .t span{color:#c9d6cc}.sum .t strong{font:400 2.4rem var(--serif)}
+.sum .go{background:var(--sun);color:var(--ink);width:100%;text-align:center}.sum .go:hover{background:#fff}
+.sum p{margin:.8rem 0 0;font-size:.92rem;color:#c9d6cc}
+.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.steps li{counter-increment:s}.steps li::before{content:counter(s);display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--poppy);color:var(--ink);font:400 1.4rem var(--serif);margin-bottom:.7rem}
+.steps strong{display:block;font:400 1.4rem var(--serif)}.steps span{color:var(--muted)}
+.faq{max-width:760px}details{border-top:2px solid var(--line);padding:1rem 0}details:last-child{border-bottom:2px solid var(--line)}
+summary{font-weight:700;cursor:pointer;font-size:1.1rem}details p{margin:.6rem 0 0;color:var(--muted)}
+footer{background:var(--ink);color:#c9d6cc;padding:2.2rem 0;font-size:.95rem}footer .wrap{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}footer strong{color:#fff}
+@media(max-width:860px){.builder{grid-template-columns:minmax(0,1fr);gap:1.5rem}.stage{position:static}.row2,.presets,.steps{grid-template-columns:1fr}.hero{padding-top:1.5rem}section{padding:2.5rem 0}}
+@media(prefers-reduced-motion:reduce){.pop{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>Ramalhete</a>
+    <nav aria-label="Main"><a href="#signature">Signature bouquets</a><a href="#build">Build your own</a><a href="#faq">FAQ</a><span class="badge" id="open"><b></b><span>Checking hours</span></span></nav>
+  </header>
+  <div class="hero" id="top">
+    <h1>Bouquets made <em>your</em> way.</h1>
+    <p>Pick the flowers, the colours and the wrapping. Watch your bouquet bloom, then send the order on WhatsApp. No long forms.</p>
+    <a class="go" href="#build">Build my bouquet</a>
+  </div>
+
+  <section id="signature">
+    <h2>Signature bouquets</h2>
+    <p class="lead">Not sure where to start? Pick one of ours and change anything you like.</p>
+    <div class="presets" id="presets"></div>
+  </section>
+
+  <section id="build">
+    <h2>Build your own</h2>
+    <p class="lead">Every change shows up in the bouquet right away.</p>
+    <div class="builder">
+      <div class="stage">
+        <svg id="bq" viewBox="0 0 320 380" role="img" aria-label="Preview of your bouquet"></svg>
+        <p class="cap" id="cap"></p>
+      </div>
+      <form id="f" onsubmit="return false">
+        <fieldset><legend>1. Size</legend><div class="opts">
+          <label class="opt"><input type="radio" name="size" value="s"><span>Small<small>5 blooms · €18</small></span></label>
+          <label class="opt"><input type="radio" name="size" value="m" checked><span>Medium<small>9 blooms · €28</small></span></label>
+          <label class="opt"><input type="radio" name="size" value="g"><span>Large<small>14 blooms · €42</small></span></label>
+        </div></fieldset>
+        <fieldset><legend>2. Flower</legend><div class="opts">
+          <label class="opt"><input type="radio" name="bloom" value="daisy" checked><span>Daisy<small>included</small></span></label>
+          <label class="opt"><input type="radio" name="bloom" value="tulip"><span>Tulip<small>+ €2</small></span></label>
+          <label class="opt"><input type="radio" name="bloom" value="rose"><span>Rose<small>+ €4</small></span></label>
+        </div></fieldset>
+        <fieldset><legend>3. Colours</legend><div class="opts">
+          <label class="opt"><input type="radio" name="pal" value="0" checked><span><span class="dots"><i style="background:#e8402a"></i><i style="background:#ff8a3d"></i><i style="background:#ffc83d"></i></span>Sunset</span></label>
+          <label class="opt"><input type="radio" name="pal" value="1"><span><span class="dots"><i style="background:#ff9bb3"></i><i style="background:#ffd1dc"></i><i style="background:#c9a7f2"></i></span>Candy floss</span></label>
+          <label class="opt"><input type="radio" name="pal" value="2"><span><span class="dots"><i style="background:#ffc83d"></i><i style="background:#fff"></i><i style="background:#6aa6ff"></i></span>Meadow</span></label>
+          <label class="opt"><input type="radio" name="pal" value="3"><span><span class="dots"><i style="background:#fff"></i><i style="background:#f1ead9"></i><i style="background:#cfe5c8"></i></span>Pure white</span></label>
+        </div></fieldset>
+        <fieldset><legend>4. Greenery and wrapping</legend>
+          <div class="opts" style="margin-bottom:.8rem">
+            <label class="opt"><input type="radio" name="green" value="euca" checked><span>Eucalyptus</span></label>
+            <label class="opt"><input type="radio" name="green" value="fern"><span>Ferns</span></label>
+            <label class="opt"><input type="radio" name="green" value="none"><span>None</span></label>
+          </div>
+          <div class="opts" style="margin-bottom:.8rem">
+            <label class="opt"><input type="radio" name="wrap" value="kraft" checked><span>Kraft paper</span></label>
+            <label class="opt"><input type="radio" name="wrap" value="blush"><span>Blush paper</span></label>
+            <label class="opt"><input type="radio" name="wrap" value="forest"><span>Forest paper</span></label>
+          </div>
+          <label class="chk"><input type="checkbox" name="jar"> Comes in a glass jar instead (+ €8)</label>
+        </fieldset>
+        <fieldset><legend>5. The details</legend>
+          <label class="f">Occasion<select name="occ"><option>Birthday</option><option>Thank you</option><option>Romance</option><option>New home</option><option>Just because</option></select></label>
+          <label class="chk"><input type="checkbox" name="card"> Message card (+ €2)</label>
+          <label class="f" id="msgbox" hidden>Card message<textarea name="msg" maxlength="160" placeholder="Write what you want to say"></textarea></label>
+        </fieldset>
+        <fieldset><legend>6. Pickup or delivery</legend>
+          <div class="opts" style="margin-bottom:1rem">
+            <label class="opt"><input type="radio" name="mode" value="pick" checked><span>Pick up in store<small>free</small></span></label>
+            <label class="opt"><input type="radio" name="mode" value="del"><span>Delivery in Porto<small>+ €4</small></span></label>
+          </div>
+          <div class="row2">
+            <label class="f">Which day?<input type="date" name="date"></label>
+            <label class="f">Time<select name="slot"><option>Morning (9 am to 1 pm)</option><option>Afternoon (2 pm to 7 pm)</option></select></label>
+          </div>
+          <label class="f">Your name<input type="text" name="name" autocomplete="given-name"></label>
+        </fieldset>
+        <div class="sum" aria-live="polite">
+          <div class="t"><span id="line">Medium bouquet</span><strong id="total">€28</strong></div>
+          <a class="go" id="send" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+          <p>Opens WhatsApp with your order already written. The shop confirms the final price and time with you.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <p class="lead">Three steps, about two minutes.</p>
+    <ol class="steps">
+      <li><strong>Build it</strong><span>Choose the flowers, colours and wrapping and watch it take shape.</span></li>
+      <li><strong>Send it</strong><span>One tap opens WhatsApp with the whole order ready to send.</span></li>
+      <li><strong>We make it</strong><span>We confirm with you, make it fresh and have it ready on your day.</span></li>
+    </ol>
+  </section>
+
+  <section id="faq">
+    <h2>Good to know</h2>
+    <div class="faq">
+      <details><summary>How far ahead should I order?</summary><p>Same-day orders are possible if you send them before noon. For big occasions, a couple of days ahead is best.</p></details>
+      <details><summary>Where do you deliver?</summary><p>Across central Porto for €4. Ask us on WhatsApp if you are a little further out.</p></details>
+      <details><summary>What if a flower is out of season?</summary><p>We swap it for a similar one in the same colours and tell you before we make it.</p></details>
+      <details><summary>How do I pay?</summary><p>On pickup or delivery, by card, cash or MB WAY.</p></details>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap">
+  <div><strong>Ramalhete</strong><br>Rua das Flores, Porto<br>Tuesday to Saturday, 9 am to 7 pm</div>
+  <div>Concept project. Fictional shop, created by Joana.</div>
+</div></footer>
+
+<script>
+var WHATSAPP = "351900000000";
+var SIZES = {s:{n:5,p:18,l:"small"}, m:{n:9,p:28,l:"medium"}, g:{n:14,p:42,l:"large"}};
+var BLOOMS = {daisy:{x:0,l:"daisy"}, tulip:{x:2,l:"tulip"}, rose:{x:4,l:"rose"}};
+var PALS = [
+  {n:"Sunset",c:["#e8402a","#ff8a3d","#ffc83d"],mid:"#7a2e12"},
+  {n:"Candy floss",c:["#ff9bb3","#ffd1dc","#c9a7f2"],mid:"#fff2a8"},
+  {n:"Meadow",c:["#ffc83d","#ffffff","#6aa6ff"],mid:"#e8402a"},
+  {n:"Pure white",c:["#ffffff","#f1ead9","#cfe5c8"],mid:"#e8c15a"}];
+var WRAPS = {kraft:["#e6d3b0","#d6bf94","#e8402a"], blush:["#f6c9d0","#e8aeb8","#1f5a33"], forest:["#3f8a54","#2d6e43","#ffc83d"]};
+var SPOTS = [[160,150,36],[112,182,32],[208,182,32],[135,100,28],[188,105,28],[160,214,30],[80,148,26],[240,148,26],[78,208,24],[242,208,24],[160,60,24],[100,76,22],[220,80,22],[58,178,20]];
+var LEAVES = [[70,215],[95,188],[250,215],[225,188],[58,168],[262,168],[120,232],[200,232]];
+var PRESETS = [
+  {name:"Sunday Morning",d:"Sunny and easy, like a lazy brunch.",size:"m",bloom:"daisy",pal:0,green:"fern",wrap:"kraft"},
+  {name:"Thank You Note",d:"Soft pinks for saying it nicely.",size:"s",bloom:"rose",pal:1,green:"euca",wrap:"blush"},
+  {name:"The Big Day",d:"All white and generous, for the days that matter.",size:"g",bloom:"tulip",pal:3,green:"euca",wrap:"forest"}];
+var f = document.getElementById("f"), svg = document.getElementById("bq"), lastKey = "";
+function val(n){ return f.elements[n].value; }
+function price(sz, bl, jar, card, del){ return SIZES[sz].p + BLOOMS[bl].x + (jar?8:0) + (card?2:0) + (del?4:0); }
+
+function bloom(type, r, col, mid){
+  var o = "", k;
+  if (type === "daisy"){
+    for (k = 0; k < 12; k++) o += '<ellipse cy="'+(-r*.55)+'" rx="'+(r*.16)+'" ry="'+(r*.45)+'" fill="'+col+'" stroke="rgba(28,42,31,.25)" transform="rotate('+(k*30)+')"/>';
+    o += '<circle r="'+(r*.3)+'" fill="'+mid+'"/>';
+  } else if (type === "tulip"){
+    var s = 'fill="'+col+'" stroke="rgba(28,42,31,.3)"';
+    o = '<ellipse cx="'+(-r*.3)+'" rx="'+(r*.38)+'" ry="'+(r*.85)+'" '+s+' transform="rotate(-14)"/><ellipse cx="'+(r*.3)+'" rx="'+(r*.38)+'" ry="'+(r*.85)+'" '+s+' transform="rotate(14)"/><ellipse rx="'+(r*.42)+'" ry="'+(r*.9)+'" '+s+'/>';
+  } else {
+    var q = 'fill="'+col+'" stroke="rgba(28,42,31,.35)" stroke-width="1.2"';
+    o = '<circle r="'+r+'" '+q+'/><circle cx="'+(r*.06)+'" r="'+(r*.72)+'" '+q+'/><circle cx="'+(-r*.05)+'" r="'+(r*.48)+'" '+q+'/><circle r="'+(r*.24)+'" '+q+'/>';
+  }
+  return o;
+}
+
+function draw(){
+  var sz = SIZES[val("size")], p = PALS[+val("pal")], b = val("bloom"), g = val("green"), w = WRAPS[val("wrap")], jar = f.elements.jar.checked;
+  var key = [val("size"), b, val("pal"), g, val("wrap"), jar].join();
+  if (key === lastKey) return; lastKey = key;
+  var o = "", sp = SPOTS.slice(0, sz.n), i;
+  if (g !== "none"){
+    o += '<g fill="#3f8a54">';
+    LEAVES.forEach(function(l){
+      o += g === "euca" ? '<circle cx="'+l[0]+'" cy="'+l[1]+'" r="12" fill="#7fb08f"/>' : '<ellipse cx="'+l[0]+'" cy="'+l[1]+'" rx="7" ry="32" transform="rotate('+((l[0]-160)*.45)+' '+l[0]+' '+l[1]+')"/>';
+    });
+    o += '</g>';
+  }
+  o += '<g stroke="#2d6e43" stroke-width="3" stroke-linecap="round">';
+  sp.forEach(function(s){ o += '<line x1="'+s[0]+'" y1="'+s[1]+'" x2="160" y2="300"/>'; });
+  o += '</g>';
+  for (i = sp.length - 1; i >= 0; i--){
+    o += '<g transform="translate('+sp[i][0]+' '+sp[i][1]+')"><g class="pop" style="animation-delay:'+((sp.length-i)*35)+'ms">'+bloom(b, sp[i][2], p.c[i%3], p.mid)+'</g></g>';
+  }
+  if (jar) o += '<rect x="100" y="250" width="120" height="116" rx="22" fill="rgba(180,215,235,.55)" stroke="#7fa7bd" stroke-width="3"/><path d="M114 290c20 8 72 8 92 0" stroke="#fff" stroke-width="3" fill="none" opacity=".7"/>';
+  else o += '<polygon points="52,238 268,238 160,372" fill="'+w[0]+'"/><polygon points="52,238 160,372 120,238" fill="'+w[1]+'"/><rect x="132" y="258" width="56" height="12" rx="6" fill="'+w[2]+'"/>';
+  svg.innerHTML = o;
+  document.getElementById("cap").textContent = "A " + sz.l + " " + BLOOMS[b].l + " bouquet · " + p.n;
+}
+
+function fmt(v){
+  if (!v) return "a day to be agreed";
+  var d = v.split("-"), m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return +d[2] + " " + m[+d[1]-1] + " " + d[0];
+}
+
+function update(){
+  var sz = SIZES[val("size")], p = PALS[+val("pal")], b = val("bloom");
+  var card = f.elements.card.checked, jar = f.elements.jar.checked, del = val("mode") === "del";
+  document.getElementById("msgbox").hidden = !card;
+  var total = price(val("size"), b, jar, card, del);
+  document.getElementById("total").textContent = "€" + total;
+  document.getElementById("line").textContent = sz.l.charAt(0).toUpperCase() + sz.l.slice(1) + " " + b + " bouquet";
+  draw();
+  var ex = [card ? "message card" : "", jar ? "glass jar" : ""].filter(Boolean).join(", ");
+  var L = ["Hi! I'd like to order a bouquet.",
+    "Size: " + sz.l + " (" + sz.n + " blooms)", "Flower: " + b, "Colours: " + p.n,
+    "Greenery: " + {euca:"eucalyptus",fern:"ferns",none:"none"}[val("green")] + ", wrapping: " + (jar ? "glass jar" : val("wrap") + " paper"),
+    "Occasion: " + val("occ"), "Extras: " + (ex || "none")];
+  if (card && f.elements.msg.value.trim()) L.push("Card message: " + f.elements.msg.value.trim());
+  L.push((del ? "Delivery in Porto" : "Pickup in store") + " on " + fmt(f.elements.date.value) + ", " + val("slot"));
+  if (f.elements.name.value.trim()) L.push("Name: " + f.elements.name.value.trim());
+  L.push("Estimated total: €" + total);
+  document.getElementById("send").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(L.join("\n"));
+}
+
+(function(){
+  var box = document.getElementById("presets");
+  PRESETS.forEach(function(pr, i){
+    var p = PALS[pr.pal];
+    var el = document.createElement("div"); el.className = "pc";
+    el.innerHTML = '<span class="dots">' + p.c.map(function(c){return '<i style="background:'+c+'"></i>';}).join("") + '</span><h3>'+pr.name+'</h3><p>'+pr.d+'</p><span class="meta">'+SIZES[pr.size].l+' '+pr.bloom+' · from €'+price(pr.size, pr.bloom, false, false, false)+'</span><button type="button" data-i="'+i+'">Start from this one</button>';
+    box.appendChild(el);
+  });
+  box.addEventListener("click", function(e){
+    var btn = e.target.closest("button"); if (!btn) return;
+    var pr = PRESETS[+btn.getAttribute("data-i")];
+    ["size","bloom","pal","green","wrap"].forEach(function(k){ f.querySelector('input[name='+k+'][value="'+pr[k]+'"]').checked = true; });
+    f.elements.jar.checked = false;
+    update();
+    document.getElementById("build").scrollIntoView({behavior: "smooth"});
+  });
+})();
+
+(function(){ var d = new Date(), m = ("0"+(d.getMonth()+1)).slice(-2), dd = ("0"+d.getDate()).slice(-2); f.elements.date.min = d.getFullYear()+"-"+m+"-"+dd; })();
+(function(){
+  var d = new Date(), day = d.getDay(), h = d.getHours() + d.getMinutes()/60, on = day >= 2 && day <= 6 && h >= 9 && h < 19, el = document.getElementById("open");
+  el.className = "badge" + (on ? " on" : "");
+  el.lastElementChild.textContent = on ? "Open now · until 7 pm" : "Closed now · Tue to Sat, 9 am to 7 pm";
+})();
+f.addEventListener("input", update); f.addEventListener("change", update); update();
+</script>
+</body>
+</html>
